@@ -34,9 +34,20 @@
             </section>
             <section>
                 <ul>
-                    <li>Data Scientist @ DGO DataLab</li>
+                    <li>Data Scientist @ FIOD</li>
                     <li class="fragment fade-right">AI @ UU</li>
                 </ul>
+            </section>
+            <section>
+                <p>Intro FIOD</p>
+                <p>Fiscaal Inl op dienst, tax fraud investigation agency, part of the Tax Authority. 14 locations all over the Netherlands, with 1100 investigators solving 500 cases a year.</p>
+                <p>In our work, we collaborate closely with other law enforcement agencies and academic institutions. </p>
+            </section>
+            <section>
+                <p>Data Science team @ FIOD: two ds, data engineer and product owner.</p>
+                <p>We create fully functional proof of concepts inside our own DataLab environment</p>
+                <p>We develop our application's in close collaboration with the investigators.</p>
+                <p>If the application get's enough traction, the further development can be continued at the development team.</p>
             </section>
         </section>
         <section data-background-color="#305e4b">
@@ -46,6 +57,7 @@
             <section data-transition="concave">
                 <p style="font-size: 45px;">FIOD has a lot of textual data</p>
                 <p style="font-size: 45px;">A lot of international documents</p>
+                <p>500 cases a year, 6 TB of data per case</p>
             </section>
             <section data-transition="concave">
                 <u style="font-size: 45px;">Currently:</u>
@@ -221,39 +233,16 @@
                     <li class="fragment fade-up">However, <b>don't</b> look too much into single "bad" examples in your data! You'll need at least a <b>few million</b> parallel sentences per model, so focus on the general data quality!</li>
                 </ul>
             </section>
-            <!--<section data-background-color="#248888">-->
-                <!--<p style="font-size: 55px; margin-bottom: 100px;">Product Ownership</p>-->
-                <!--<p class="fragment fade-up" style="margin-bottom: 20px;">Björn is de PO van Subject Detection</p>-->
-                <!--<p class="fragment fade-up" style="margin-bottom: 20px;">Functionaliteit wensen vanuit de recherche</p>-->
-                <!--<div class="fragment fade-up" style="margin-bottom: 20px;"><p style="display: inline;">Kleine features kunnen eventueel naar </p>-->
-                <!--<p style="display: inline;" class="fragment highlight-green">de huidige sprint.</p></div>-->
-                <!--<div class="fragment fade-up" style="margin-bottom: 20px;"><p style="display: inline;">Grote features gaan naar </p>-->
-                    <!--<p style="display: inline;" class="fragment highlight-blue">de backlog.</p></div>-->
-            <!--</section>-->
-            <!--<section data-background-color="#518f8b">-->
-                <!--<p style="font-size: 55px; margin-bottom: 100px;">Praktijk Product Ownership</p>-->
-                <!--<ul>-->
-                    <!--<li class="fragment fade-up">Tweewekelijks, afgelopen drie maanden</li>-->
-                    <!--<li class="fragment fade-up">Wat is er ontworpen en hoe sluit het aan bij de behoeftes van de recherche?</li>-->
-                    <!--<li class="fragment fade-up">Wat is er nodig voor de eerste versie?</li>-->
-                    <!--<li class="fragment fade-up">Terugkoppeling met nieuwe vragen en ideeën vanuit recherche, in combinatie met de expertise van de data scientist.</li>-->
-                <!--</ul>-->
-            <!--</section>-->
-            <!--<section data-background-color="#005f6b">-->
-                <!--<p>Maar ook algemene discussie over nieuwe mogelijkheden aangaande tooling voor recherchevraagstukken!</p>-->
-            <!--</section>-->
-            <!--<section data-background-color="#33655b">-->
-                <!--<p style="font-size: 55px; margin-bottom: 100px;">Andere samenwerkingen</p>-->
-                <!--<ul>-->
-                    <!--<li class="fragment fade-up">Pilot FIOD Translate</li>-->
-                    <!--<li class="fragment fade-up">Automatisch samenvatten als een voorstel van de rechercheur (ga langs Robin voor meer info!)</li>-->
-                    <!--<li class="fragment fade-up">Subject Detection voor een specifieke grote zaak</li>-->
-                    <!--<li class="fragment fade-up">Nieuwe talen toevoegen aan FIOD Translate voor grote lopende zaken</li>-->
-                    <!--<li class="fragment fade-in-then-semi-out">en meer!</li>-->
-                <!--</ul>-->
-            <!--</section>-->
-        <!--</section>-->
-        <!--<section data-background-color="#217C7E" style="font-size: 55px;">Vragen?</section>-->
+            <section>
+                <p>Our challenge</p>
+            </section>
+            <section>
+                <p>Offline training</p>
+                <p>GPU servers in our offline infrastructure</p>
+                <p>Manual data delivery to the offline infrastructure (eerst met usb stick naar boven, in de server pluggen, dan zit het op het datacenter, vervolgens kopieren we het naar een ander subnet in het datacenter en dan eenmaal daar moeten we het nog een keer kopieren naar onze specifieke GPU (3 hops nodig) server toe.</p>
+                <p>OF rijden naar Apeldoorn om daar te uploaden! En die toestemming heeft.</p>
+                <p>Checkpoints written to Ceph (S3 buckets)</p>
+            </section>
         </section>
         <section>
             <p>Road to production</p>
@@ -314,11 +303,22 @@
             </section>
         </section>
         <section>
-            <p style="font-size: 55px;">Kubernetes and deployment</p>
+            <p style="font-size: 55px;">Deployment</p>
         </section>
         <section>
             <p>We need to make sure all of our microservices are scalable, reliable and can work together within one environment.</p>
-
+        </section>
+        <section>
+            <p>To make sure our "production" environment is up to date, we make use of Jenkins to build, test and analyze each one of the applications.</p>
+            <p>Once Jenkins has built the new version of a service, the built image is pushed to our own offline artifact store and is later retrieved in each deployment.</p>
+        </section>
+        <section>
+            <p>As I have told, right now we have to do the last deployment step manually, but in the near future this step will become automatic too.</p>
+        </section>
+        <section>
+            <p>We make use of Kubernetes for our container orchestration.</p>
+            <p>Each service (frontend, backend and model server in the case of translation) have deployment files that make sure the corresponding service is up and running at all times.</p>
+            <p>final product of ds is not just a model or a jupyter notebook but is a fully operational microservice! (Docker image and the corresponding deployment files.)</p>
         </section>
     </div>
 </div>
