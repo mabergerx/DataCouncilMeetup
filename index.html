@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <p style="font-size: 55px;">Offline Translation at FIOD</p>
+        </section>
+        <section>
+            <section data-transition="concave">
+                <p style="font-size: 55px;">Mark Berger</p>
+            </section>
+            <section>
+                <ul>
+                    <li>Data Scientist @ DGO DataLab</li>
+                    <li class="fragment fade-right">AI @ UU</li>
+                </ul>
+            </section>
+        </section>
+        <section data-background-color="#305e4b">
+            <section>
+                <p style="font-size: 55px;">The Problem</p>
+            </section>
+            <section data-transition="concave">
+                <p style="font-size: 45px;">FIOD has a lot of textual data</p>
+                <p style="font-size: 45px;">A lot of international documents</p>
+            </section>
+            <section data-transition="concave">
+                <u style="font-size: 45px;">Currently:</u>
+                <p style="font-size: 45px;" class="fragment fade-in-then-semi-out">Manual translation...</p>
+                <p style="font-size: 45px;" class="fragment fade-in-then-semi-out"> or not full data coverage!</p>
+                <div class="fragment fade-up"><div><p style="display: inline;">Cons: very </p>
+                <p style="display: inline;" class="fragment highlight-red">costly and slow.</p></div></div>
+                <div class="fragment fade-up"><p style="font-size: 45px;" class="fragment highlight-red">And possibly even missed information!</p></div>
+            </section>
+        </section>
+        <section data-background-color="#333366">
+            <section>
+                <p style="font-size: 55px;">Possible solutions</p>
+            </section>
+            <section data-background-image="https://media.giphy.com/media/iMg3cIE0gItZC/giphy.gif"
+                     data-transition="zoom">
+                <p style="color: whitesmoke; position: relative; text-align: center; top: 400px; font-size: 55px;">
+                    Machine Translation</p>
+            </section>
+            <section data-transition="concave">
+                <div><p style="display: inline;">Confidential data => </p>
+                <p style="display: inline;" class="fragment highlight-red">can't use 3rd party API's!</p></div>
+            </section>
+            <section data-transition="concave">
+                <p>Need our own translation engine!</p>
+                <div><p style="display: inline;">Another plus: </p>
+                    <p style="display: inline;" class="fragment highlight-green">full control over languages and the amount of use!</p></div>
+            </section>
+        </section>
+        <section>
+            <section data-background-image="https://media.giphy.com/media/CRwUOHpwa9Lhe/giphy.gif">
+                <p style="font-size: 75px;">Enter the Transformer</p></section>
+            <section>
+                <p style="font-size: 50px;">Attention Is All You Need (Vaswani et al., 2017)</p>
+                <ul>
+                    <li class="fragment fade-up" style="font-size: 45px;">Enormous impact on the NLP community</li>
+                    <li class="fragment fade-up">Based on the powerful notion of attention</li>
+                </ul>
+            </section>
+            <section>
+                <img src="transformer.png">
+                <p style="font-size: 10px; position: relative; left: 35%;">© https://jalammar.github.io/illustrated-transformer/</p>
+            </section>
+        </section>
+        <section>
+            <section><p>Encoder-Decoder model</p></section>
+            <section><p>The Transformer first encodes the input sentence (source language) through multiple stacked encoder layers and then decodes the encoder output into an output sentence (target language), token per token.</p></section>
+            <section><p>Input for the model is a list of words which are first embedded into context-aware vector representations.</p></section>
+            <section>
+                <p>The main concept that makes this architecture work so well is self-attention.</p>
+            </section>
+            <section>
+                <!--<div><p style="display: inline;">Another plus: </p>-->
+                    <!--<p style="display: inline;" class="fragment highlight-green">full control over languages and the amount of use!</p></div>-->
+                <p style="display: inline">In the sentence</p> <p style="display: inline; color: yellow;">“The pupil put his pen down because it was empty.”</p>
+                the model needs to understand that the word <p style="color: yellow; display: inline">“it”</p>
+                corresponds to the word <p style="display: inline; color: yellow">“pen”</p> and not <p style="display: inline; color: green">“pupil”</p> to correctly translate the sentence!</p>
+            </section>
+            <section>
+                <p>Self-attention in the encoder makes it so each input element "attends" to each input element.</p>
+                <!--Explain here that there also multiple attention heads with each their own weight matrices, so words can attend to different words (like nouns to nouns and n ouns to verbs).-->
+                <img src="self_attention.png" style="width: 35%; height: 35%;">
+                <p style="font-size: 25px;">Multiple attention heads, which are being trained simultaneously, allow each word to attend to semantically different parts of the sentence and such help the encoding of even the most complex sentences!</p>
+            </section>
+                <section>
+                    <p style="font-size: 35px;">The decoder is similar to the encoder in the way it processes the encoder output, except it's self-attention is limited to only previous tokens to prevent copying.</p>
+                </section>
+                <section>
+                <p style="font-size: 35px;">In the end, we take the result of the last decoder layer and put it through a special linear function which translates this relatively short vector (depending on the hidden size we defined) to a vector of size of our vocabulary (33k in our models).</p>
+                </section>
+                <section>
+                    <p style="font-size: 35px;">Then we put this layer through softmax and return the most probable token!</p>
+                    <img src="decoder_output.png" style="width: 70%; height: 70%">
+                </section>
+            <section>
+                <p style="font-size: 35px;">So our final loss function is just how far the output produced by the model (which is a probability distribution over all possible tokens) is from the real one-hot encoded target. We calculate the distance and then backpropagate it through the network!</p>
+            </section>
+            </section>
+        <section data-background-color="#005f6b" style="font-size: 55px;">Our implementation</section>
+        <section data-background-color="#005f6b">
+            <section data-markdown>
+                <textarea data-template>
+                    ###  `tensor2tensor`
+                </textarea>
+            </section>
+            <section>
+                <p style="font-size: 55px; padding-bottom: 40px;">Data</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Target</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>My name is Mark.</td>
+                        <td>Mijn naam is Mark.</td>
+                    </tr>
+                    <tr>
+                        <td>It's awfully hot lately in the Netherlands.</td>
+                        <td>Het is de laatste tijd erg warm in Nederland.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p style="display: inline; position: relative; top: 50px;">Make use of <b>open data</b>, because you will need</p> <p style="display: inline;  position: relative; top: 50px; color: green"><b>lots</b></p><p style="display: inline;  position: relative; top: 50px;"> of it!</p>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ###  `Problem`
+                    `tensor2tensor` allows us to create a so-called `Problem` class based on one of the defined `Problem` classes.
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                Such `Problem` is essentially a definition of our task where we declare what data we will use,
+                    which hyperparameters we want to (not) inherit from the superclass, and is on itself a self-standing Python module.
+                </textarea>
+            </section>
+            <section>
+                <p>Example: Spanish-Dutch Problem definition</p>
+                <pre style="font-size: 12px;"><code data-trim data-noescape data-line-numbers style="max-height: 700px;">
+                    from tensor2tensor.data_generators import problem
+                    from tensor2tensor.data_generators import text_encoder
+                    from tensor2tensor.data_generators import text_problems
+                    from tensor2tensor.data_generators import translate
+
+                    _ES_NL_TRAIN_DATASETS = [
+
+                        [
+                            "../../source_data/dgt.tar.gz",
+                            ("DGT.es-nl.es", "DGT.es-nl.nl")
+                        ]
+                    ]
+
+                    _ES_NL_TEST_DATASETS = [
+                        [
+                            "../../source_data/euconstdev.tar.gz",
+                            ("EUconst.es-nl.es", "EUconst.es-nl.nl")
+                        ],
+                    ]
+
+                    @registry.register_problem
+                    class SpanishToDutchProblem(translate.TranslateProblem):
+                        """Problem spec for Spanish-Dutch translation."""
+
+                        @property
+                        def approx_vocab_size(self):
+                            return 2**15 # 32768
+
+
+                        @property
+                        def vocab_filename(self):
+                            return "vocab.esnl.%d" % self.approx_vocab_size
+
+
+                        def source_data_files(self, dataset_split):
+                            train = dataset_split == problem.DatasetSplit.TRAIN
+                            return _ES_NL_TRAIN_DATASETS if train else _ES_NL_TEST_DATASETS
+
+                </code></pre>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                Final `Problem` definition of a model we use is just under 100 lines of code. `tensor2tensor` takes care of everything else!
+                </textarea>
+            </section>
+            <section>
+                <ul>
+                    <li>It is important to make sure the data is reasonably good.</li>
+                    <li class="fragment fade-up">Check for data alignment! Bad alignment can crush your performance.</li>
+                    <li class="fragment fade-up">Remember: <p style="display: inline; color: #8b645c;">garbage in, garbage out!</p></li>
+                    <li class="fragment fade-up">However, <b>don't</b> look too much into single "bad" examples in your data! You'll need at least a <b>few million</b> parallel sentences per model, so focus on the general data quality!</li>
+                </ul>
+            </section>
+            <!--<section data-background-color="#248888">-->
+                <!--<p style="font-size: 55px; margin-bottom: 100px;">Product Ownership</p>-->
+                <!--<p class="fragment fade-up" style="margin-bottom: 20px;">Björn is de PO van Subject Detection</p>-->
+                <!--<p class="fragment fade-up" style="margin-bottom: 20px;">Functionaliteit wensen vanuit de recherche</p>-->
+                <!--<div class="fragment fade-up" style="margin-bottom: 20px;"><p style="display: inline;">Kleine features kunnen eventueel naar </p>-->
+                <!--<p style="display: inline;" class="fragment highlight-green">de huidige sprint.</p></div>-->
+                <!--<div class="fragment fade-up" style="margin-bottom: 20px;"><p style="display: inline;">Grote features gaan naar </p>-->
+                    <!--<p style="display: inline;" class="fragment highlight-blue">de backlog.</p></div>-->
+            <!--</section>-->
+            <!--<section data-background-color="#518f8b">-->
+                <!--<p style="font-size: 55px; margin-bottom: 100px;">Praktijk Product Ownership</p>-->
+                <!--<ul>-->
+                    <!--<li class="fragment fade-up">Tweewekelijks, afgelopen drie maanden</li>-->
+                    <!--<li class="fragment fade-up">Wat is er ontworpen en hoe sluit het aan bij de behoeftes van de recherche?</li>-->
+                    <!--<li class="fragment fade-up">Wat is er nodig voor de eerste versie?</li>-->
+                    <!--<li class="fragment fade-up">Terugkoppeling met nieuwe vragen en ideeën vanuit recherche, in combinatie met de expertise van de data scientist.</li>-->
+                <!--</ul>-->
+            <!--</section>-->
+            <!--<section data-background-color="#005f6b">-->
+                <!--<p>Maar ook algemene discussie over nieuwe mogelijkheden aangaande tooling voor recherchevraagstukken!</p>-->
+            <!--</section>-->
+            <!--<section data-background-color="#33655b">-->
+                <!--<p style="font-size: 55px; margin-bottom: 100px;">Andere samenwerkingen</p>-->
+                <!--<ul>-->
+                    <!--<li class="fragment fade-up">Pilot FIOD Translate</li>-->
+                    <!--<li class="fragment fade-up">Automatisch samenvatten als een voorstel van de rechercheur (ga langs Robin voor meer info!)</li>-->
+                    <!--<li class="fragment fade-up">Subject Detection voor een specifieke grote zaak</li>-->
+                    <!--<li class="fragment fade-up">Nieuwe talen toevoegen aan FIOD Translate voor grote lopende zaken</li>-->
+                    <!--<li class="fragment fade-in-then-semi-out">en meer!</li>-->
+                <!--</ul>-->
+            <!--</section>-->
+        <!--</section>-->
+        <!--<section data-background-color="#217C7E" style="font-size: 55px;">Vragen?</section>-->
+        </section>
+        <section>
+            <p>Road to production</p>
+        </section>
+        <section>
+            <p>Three main components:</p>
+            <ol>
+                <li>1</li>
+                <li>2</li>
+            </ol>
+        </section>
+        <!--<section>-->
+            <!--<p>Docker</p>-->
+            <!--<p>tensorflow model server</p>-->
+            <!--<p>frontend-backend</p>-->
+            <!--<p>Kubernetes</p>-->
+        <!--</section>-->
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        transitionSpeed: 'default',
+        progress: true,
+        hash: true,
+        transition: 'slide',
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'plugin/highlight/highlight.js', async: true}
+        ]
+    });
+</script>
+</body>
+</html>
