@@ -259,18 +259,67 @@
             <p>Road to production</p>
         </section>
         <section>
-            <p>Three main components:</p>
+           <section>
+            <p style="font-size: 55px; padding-bottom: 50px;">Three main components</p>
             <ol>
-                <li>1</li>
-                <li>2</li>
+                <li>TensorFlow model server</li>
+                <li>translation-api</li>
+                <li>translation-frontend</li>
             </ol>
+           </section>
+            <section>
+                <p>TensorFlow model server</p>
+                <p>Once our model is trained, we can export it and use the variables and saved graph for inference.</p>
+            </section>
+            <section>
+                <p style="font-size: 35px; padding-bottom: 50px;">The exported model directory is then copied inside a very simple Dockerfile, together with a .conf file which specifies what the name of each model should be.</p>
+                <pre style="font-size: 20px;"><code data-trim data-noescape data-line-numbers style="max-height: 700px;">
+                    FROM tensorflow/serving:1.11.0-rc0
+                    COPY /ES-NL /ES-NL
+                    COPY translation_server.conf translation_server.conf
+                    EXPOSE 8500:8500
+                </code></pre>
+            </section>
+            <section>
+                <p>This way, we can export multiple models first, put them all inside a Docker image and distinguish the models inside a configuration file.</p>
+                <pre style="font-size: 20px;"><code data-trim data-noescape data-line-numbers style="max-height: 700px;">
+                    model_config_list: {
+                        config: {
+                        name: "es_nl_transformer",
+                        base_path: "/ES-NL",
+                        model_platform: "tensorflow"
+                        },
+                        config: {
+                        name: "de_en_transformer",
+                        base_path: "/DE-NL",
+                        model_platform: "tensorflow"
+                        }
+                    }
+                </code></pre>
+                <p>Now multiple model graphs are restored within a single Docker container and are accessible on the same server!</p>
+            </section>
+            <section>
+                <p style="font-size: 55px; padding-bottom: 50px;">translation-api</p>
+                <p>We make use of REST microservices in our infrastructure, so each model we develop must have a REST API wrapper around it.</p>
+                <p style="display: inline">Our platform of choice is</p> <p style="background-color: green; display: inline"> flask-restplus. </p>
+            </section>
+            <section>
+                <p>The REST API takes care of batching the data that is coming in, making the call to the TensorFlow model server and returning the output of the model as a well-formatted JSON.</p>
+                <p>Moreover, flask-restplus automatically generates Swagger documentation for our service. Very handy for other developers!</p>
+            </section>
+            <section>
+                <p style="font-size: 55px; padding-bottom: 50px;">translation-frontend</p>
+                <p>Finally, we need to have an interface for non-developers to interact with our model. </p>
+                <p>We developed the initial version of our interface in Dash, a Python framework by the authors of plot.ly, but we now begin the transition to full React frontends.</p>
+            </section>
         </section>
-        <!--<section>-->
-            <!--<p>Docker</p>-->
-            <!--<p>tensorflow model server</p>-->
-            <!--<p>frontend-backend</p>-->
-            <!--<p>Kubernetes</p>-->
-        <!--</section>-->
+        <section>
+            <p style="font-size: 55px;">Kubernetes and deployment</p>
+        </section>
+        <section>
+            <p>We need to make sure all of our microservices are scalable, reliable and can work together within one environment.</p>
+
+        </section>
     </div>
 </div>
 
