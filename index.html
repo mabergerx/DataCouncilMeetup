@@ -27,6 +27,9 @@
     <div class="slides">
         <section>
             <p style="font-size: 55px;">Offline Translation at FIOD</p>
+            <aside class="notes">
+                I would like to ask you not to make pictures or video of this presentation.
+            </aside>
         </section>
         <section>
             <section data-transition="concave">
@@ -36,33 +39,75 @@
                 <ul>
                     <li>Data Scientist @ FIOD</li>
                     <li class="fragment fade-right">AI @ UU</li>
+                    <li class="fragment fade-right">Data Science traineeship in 2017, stationed at the FIOD.</li>
+                </ul>
+                <aside class="notes">
+                    With interest in data and software engineering, and frankly it's needed in our small team ;)
+                </aside>
+            </section>
+            <section data-background-color="whitesmoke">
+                <p style="font-size: 55px; color: black">Intro FIOD</p>
+                <p style="font-size: 50px; font-style: italic; color: black;">Fiscale Inlichtingen- en OpsporingsDienst</p>
+                <img src="https://www.businessdatachallengers.nl/wp-content/uploads/2018/11/xfiod.png.pagespeed.ic.6Iaw3xGaFB.png">
+            </section>
+            <section data-background-color="#406cb3">
+                <ul>
+                    <li style="padding-bottom: 25px;">Tax fraud investigation agency, part of the Tax Authority.</li>
+                    <li style="padding-bottom: 25px;" class="fragment fade-up">14 locations, 1100 investigators, 500 cases a year.</li>
+                </ul>
+                <div id="organisation-images" class="fragment fade-up">
+                    <img src="https://trbroadcasting.tv/wp-content/uploads/2018/01/16.POL_Logo_BlauwGoud_RGB_300dpi.png" width="190px" height="90px">
+                    <img src="https://www.amlc.nl/wp-content/uploads/2018/02/AMLC_logo_grijs.png" width="190px" height="90px">
+                    <img src="https://aliexpress-nl.nl/wp-content/uploads/2018/11/aliexpress-invoerrechten-betalen.jpg" width="190px" height="90px">
+                </div>
+                <aside class="notes">
+                    14 locations all over the Netherlands, with 1100 investigators working on 500 cases a year.
+                    In our work, we collaborate closely with other law enforcement agencies and academic institutions.
+                </aside>
+            </section>
+            <section data-background-color="#214e96">
+                <!--This next slide about team more with pictures / styling-->
+                <p>Data Science team @ FIOD:</p>
+                <ul>
+                    <li class="fragment fade-up">Two Data Scientists</li>
+                    <li class="fragment fade-up">Data Engineer</li>
+                    <li class="fragment fade-up">Product Owner</li>
                 </ul>
             </section>
-            <section>
-                <p>Intro FIOD</p>
-                <p>Fiscaal Inl op dienst, tax fraud investigation agency, part of the Tax Authority. 14 locations all over the Netherlands, with 1100 investigators solving 500 cases a year.</p>
-                <p>In our work, we collaborate closely with other law enforcement agencies and academic institutions. </p>
+            <section data-transition="concave">
+                <p>Proof of Concepts</p>
+                <aside class="notes">
+                    We create fully functional proof of concepts inside our own DataLab environment.
+                </aside>
             </section>
             <section>
-                <p>Data Science team @ FIOD: two ds, data engineer and product owner.</p>
-                <p>We create fully functional proof of concepts inside our own DataLab environment</p>
-                <p>We develop our application's in close collaboration with the investigators.</p>
-                <p>If the application get's enough traction, the further development can be continued at the development team.</p>
+                <div>
+                <img src="samenwerking.png" style="width: 40%; margin: 0; box-shadow: unset; border: unset; background: unset; position: relative; top: 17px;">
+                </div>
+                <aside class="notes">We develop our applications in close collaboration with the investigators.
+                    So we work in a push and pull kind of system, where we push some ideas from our own studies and experience, new stuff we see in papers and on GitHub, but we also pull from the business, when an investigation team faces some kind of data challenge.
+                    If the application get's enough traction, the further development can be continued at the development team.
+                </aside>
             </section>
         </section>
-        <section data-background-color="#305e4b">
+        <section data-background-color="#305e4b" data-transition="concave">
             <section>
-                <p style="font-size: 55px;">The Problem</p>
+                <p style="font-size: 55px;">The Challenge</p>
             </section>
             <section data-transition="concave">
                 <p style="font-size: 45px;">FIOD has a lot of textual data</p>
-                <p style="font-size: 45px;">A lot of international documents</p>
-                <p>500 cases a year, 6 TB of data per case</p>
+                <p style="font-size: 45px;" class="fragment fade-up">A lot of international documents</p>
+               <div class="fragment fade-up">
+                   <div class="fragment grow"><p style="display: inline;" class="fragment highlight-blue">500</p><p style="display: inline;"> cases a year, <p style="display: inline;" class="fragment highlight-blue">~6 TB </p>of data per case</p></div>
+               </div>
+                <aside class="notes">
+                    Textual data comes in all kinds of formats: e-mails, Word documents, PDF's, text screenshots, etc.
+                </aside>
             </section>
             <section data-transition="concave">
                 <u style="font-size: 45px;">Currently:</u>
                 <p style="font-size: 45px;" class="fragment fade-in-then-semi-out">Manual translation...</p>
-                <p style="font-size: 45px;" class="fragment fade-in-then-semi-out"> or not full data coverage!</p>
+                <p style="font-size: 45px;" class="fragment fade-in-then-semi-out"> or incomplete coverage of the data!</p>
                 <div class="fragment fade-up"><div><p style="display: inline;">Cons: very </p>
                 <p style="display: inline;" class="fragment highlight-red">costly and slow.</p></div></div>
                 <div class="fragment fade-up"><p style="font-size: 45px;" class="fragment highlight-red">And possibly even missed information!</p></div>
@@ -85,6 +130,9 @@
                 <p>Need our own translation engine!</p>
                 <div><p style="display: inline;">Another plus: </p>
                     <p style="display: inline;" class="fragment highlight-green">full control over languages and the amount of use!</p></div>
+                <aside class="notes">
+                    This also allows us to finetune our translation models better to the FIOD domain. (legal, fraud and maybe slang)
+                </aside>
             </section>
         </section>
         <section>
@@ -92,10 +140,10 @@
                 <p style="font-size: 75px;">Enter the Transformer</p></section>
             <section>
                 <p style="font-size: 50px;">Attention Is All You Need (Vaswani et al., 2017)</p>
-                <ul>
-                    <li class="fragment fade-up" style="font-size: 45px;">Enormous impact on the NLP community</li>
-                    <li class="fragment fade-up">Based on the powerful notion of attention</li>
-                </ul>
+                <aside class="notes">
+                    Enormous impact on the NLP community
+                    Based on the powerful notion of attention
+                </aside>
             </section>
             <section>
                 <img src="transformer.png">
@@ -104,36 +152,84 @@
         </section>
         <section>
             <section><p>Encoder-Decoder model</p></section>
-            <section><p>The Transformer first encodes the input sentence (source language) through multiple stacked encoder layers and then decodes the encoder output into an output sentence (target language), token per token.</p></section>
-            <section><p>Input for the model is a list of words which are first embedded into context-aware vector representations.</p></section>
-            <section>
-                <p>The main concept that makes this architecture work so well is self-attention.</p>
+            <section data-background-color="white">
+                <img src="http://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png" style="box-shadow: unset; border: unset; background: unset;">
+                <p style="font-size: 10px; position: relative; left: 45%; color: black;">© https://jalammar.github.io/illustrated-transformer/</p>
+                <aside class="notes" style="font-size: 15px;">
+                    The Transformer first encodes the input sentence (source language) through multiple stacked encoder layers and then decodes the encoder output into an output sentence (target language), token per token.
+                    This is a rough picture, so let's walk thorugh it in a little more detail.
+                </aside>
+            </section>
+            <section data-background-color="white">
+                <img src="embedding.png" style="box-shadow: unset; border: unset; background: unset;">
+                <p style="font-size: 10px; position: relative; left: 45%; color: black;">© https://jalammar.github.io/illustrated-transformer/</p>
+                <aside class="notes">
+                    Input for the model is a list of words which are first embedded into context-aware vector representations.
+                </aside>
             </section>
             <section>
-                <!--<div><p style="display: inline;">Another plus: </p>-->
-                    <!--<p style="display: inline;" class="fragment highlight-green">full control over languages and the amount of use!</p></div>-->
+                <p>Self-Attention</p>
+                <aside class="notes">
+                    The main concept that makes this architecture work so well is self-attention.
+                </aside>
+            </section>
+            <section>
                 <p style="display: inline">In the sentence</p> <p style="display: inline; color: yellow;">“The pupil put his pen down because it was empty.”</p>
                 the model needs to understand that the word <p style="color: yellow; display: inline">“it”</p>
                 corresponds to the word <p style="display: inline; color: yellow">“pen”</p> and not <p style="display: inline; color: green">“pupil”</p> to correctly translate the sentence!</p>
+                <aside class="notes">
+                    And it does that by calculating the attention score for each word in the sequence in relation to each word in the sequence (including itself).
+                    (dont say this if short time) We do this by multiplying the query vector of the current word to each key vector in the whole input sequence (so also to its own key vector!)
+                </aside>
             </section>
             <section>
-                <p>Self-attention in the encoder makes it so each input element "attends" to each input element.</p>
-                <!--Explain here that there also multiple attention heads with each their own weight matrices, so words can attend to different words (like nouns to nouns and n ouns to verbs).-->
-                <img src="self_attention.png" style="width: 35%; height: 35%;">
-                <p style="font-size: 25px;">Multiple attention heads, which are being trained simultaneously, allow each word to attend to semantically different parts of the sentence and such help the encoding of even the most complex sentences!</p>
+                <!--Explain here that there also multiple attention heads with each their own weight matrices, so words can attend to different words (like nouns to nouns and nouns to verbs).-->
+                <img src="self_attention.png" style="width: 55%; height: 55%;">
+                <aside class="notes">
+                    Self-attention in the encoder makes it so each input element "attends" to each input element in each of the attention heads!
+                    Multiple attention heads, which are being trained simultaneously, allow each word to attend to semantically different parts of the sentence and such help the encoding of even the most complex sentences!
+                </aside>
+            </section>
+            <section>
+                <img src="Word_vectors.png">
+                <aside class="notes">
+                        During training process, we train three matrices for each attention head: Query weights matrix, Key weights matrix and Value weights matrix.
+                        For each input vector we create three vectors:
+                        Query vector (Q) = embedding * Query matrix
+                        Key vector (K) = embedding * Key matrix
+                        Value vector (V) = embedding * Value matrix
+                </aside>
+            </section>
+            <section>
+                <img src="layer_output_process.png">
+                <aside class="notes">
+                    Then for each word, we calculate the attention score. We do this by multiplying the query vector of the current word to each key vector in the whole input sequence.
+                    Once we have this scores, we normalize them, put them through softmax to turn them into a probability distribution and afterwards multiply each value vector with this probability.
+                    In fact this means that we don’t want to pay attention to some tokens in our input sequence, because the result of a vector * 0,000001 is a vector with very small values. Tokens that are important for this particular token are, however, kept intact!
+                    Afterwards, we sum up the resulted weighted vectors and we get the self-attention vector at a certain step. (if asked: the transformer prevents overfitting on its own word by using these multiple attention heads, which gives the attention layer multiple representation subspaces, which result in a variying attention scores ).
+                </aside>
             </section>
                 <section>
-                    <p style="font-size: 35px;">The decoder is similar to the encoder in the way it processes the encoder output, except it's self-attention is limited to only previous tokens to prevent copying.</p>
+                    <p style="font-size: 35px;">Self-Attention in the decoder</p>
+                    <aside class="notes">
+                        The decoder is similar to the encoder in the way it processes the encoder output, except it's self-attention is limited to only previous tokens to prevent copying.
+                        (dont say if notime) It’s first input is the output of the last encoder step which is transformed to the matrices of key vectors and value vectors. Each next decoder step is a combination of those encoder matrices and its previously decoded output.
+                        We do the self-attention fix by masking: assigning -100000000 attention score to each future token.
+                    </aside>
                 </section>
                 <section>
-                <p style="font-size: 35px;">In the end, we take the result of the last decoder layer and put it through a special linear function which translates this relatively short vector (depending on the hidden size we defined) to a vector of size of our vocabulary (33k in our models).</p>
-                </section>
-                <section>
-                    <p style="font-size: 35px;">Then we put this layer through softmax and return the most probable token!</p>
                     <img src="decoder_output.png" style="width: 70%; height: 70%">
+                    <aside class="notes">
+                        In the end, we take the result of the last decoder layer and put it through a special linear function which translates this relatively short vector (depending on the hidden size we defined) to a vector of size of our vocabulary (33k in our models).
+                        Then we put this layer through softmax and return the most probable token!
+                    </aside>
                 </section>
             <section>
-                <p style="font-size: 35px;">So our final loss function is just how far the output produced by the model (which is a probability distribution over all possible tokens) is from the real one-hot encoded target. We calculate the distance and then backpropagate it through the network!</p>
+                <p style="font-size: 45px;">Final loss function</p>
+                <p style="font-size: 35px;" class="fragment fade-up">Distance from the one-hot encoded target!</p>
+                <aside class="notes">
+                    So our final loss function is just how far the output produced by the model (which is a probability distribution over all possible tokens) is from the real one-hot encoded target. We calculate the distance and then backpropagate it through the network!
+                </aside>
             </section>
             </section>
         <section data-background-color="#005f6b" style="font-size: 55px;">Our implementation</section>
@@ -141,7 +237,17 @@
             <section data-markdown>
                 <textarea data-template>
                     ###  `tensor2tensor`
+                    <aside class="notes">
+                    tensor2tensor is a collection of TensorFlow model definitions.
+                </aside>
                 </textarea>
+            </section>
+            <section>
+                <p>Maintained and used by Google Brain team members and has a growing open source community around it.</p>
+                <img src="t2t.png">
+            </section>
+            <section>
+                <p style="font-size: 55px;">Our task</p>
             </section>
             <section>
                 <p style="font-size: 55px; padding-bottom: 40px;">Data</p>
@@ -168,14 +274,22 @@
             <section data-markdown>
                 <textarea data-template>
                     ###  `Problem`
-                    `tensor2tensor` allows us to create a so-called `Problem` class based on one of the defined `Problem` classes.
+                    `tensor2tensor` `Problem` class
+                    <aside class="notes">
+                    tensor2tensor allows us to create a so-called Problem class based on one of the defined Problem classes.
+                </aside>
                 </textarea>
             </section>
-            <section data-markdown>
-                <textarea data-template>
-                Such `Problem` is essentially a definition of our task where we declare what data we will use,
+            <section>
+                <ul>
+                    <li>Data</li>
+                    <li class="fragment fade-up">Hyperparameters</li>
+                    <li class="fragment fade-up">A Python module</li>
+                </ul>
+                    <aside class="notes">
+                        Such `Problem` is essentially a definition of our task where we declare what data we will use,
                     which hyperparameters we want to (not) inherit from the superclass, and is on itself a self-standing Python module.
-                </textarea>
+                    </aside>
             </section>
             <section>
                 <p>Example: Spanish-Dutch Problem definition</p>
@@ -219,6 +333,13 @@
                             return _ES_NL_TRAIN_DATASETS if train else _ES_NL_TEST_DATASETS
 
                 </code></pre>
+                <aside class="notes">
+                    So tensor2tensor has 3 main steps for developing your models, the data generation step, the training step and the exporting step.
+                    This code here shows the data generation step, as it is vital for declaring what kind of model you would want to train.
+                    Here, we first define where t2t needs to look for our train and test data, then we define what kind of Problem is it (translateProblem),
+                    and finally we define approximate vocabulary size and how to split the data.
+                    The vocabulary size here is kind of arbitrarily chosen based on similar translation problems other users defined but seem to work for mostly Germanic and Latin languages. Note that out vocabulary here are subwords (based on byte pair encodings) and not "real" words.
+                </aside>
             </section>
             <section data-markdown>
                 <textarea data-template>
@@ -232,20 +353,48 @@
                     <li class="fragment fade-up">Remember: <p style="display: inline; color: #8b645c;">garbage in, garbage out!</p></li>
                     <li class="fragment fade-up">However, <b>don't</b> look too much into single "bad" examples in your data! You'll need at least a <b>few million</b> parallel sentences per model, so focus on the general data quality!</li>
                 </ul>
+                <aside class="notes">
+                    2. Also check for strange characters and encodings in your data, we had our training failing because some characters were not parsed correctly during data generation step. Especially in open datasets, there could be some weird stuff going on with the content.
+                </aside>
             </section>
             <section>
-                <p>Our challenge</p>
+                <p style="font-size: 55px;">Our challenge</p>
             </section>
             <section>
-                <p>Offline training</p>
+                <p style="font-size: 50px;">Offline training</p>
                 <p>GPU servers in our offline infrastructure</p>
-                <p>Manual data delivery to the offline infrastructure (eerst met usb stick naar boven, in de server pluggen, dan zit het op het datacenter, vervolgens kopieren we het naar een ander subnet in het datacenter en dan eenmaal daar moeten we het nog een keer kopieren naar onze specifieke GPU (3 hops nodig) server toe.</p>
-                <p>OF rijden naar Apeldoorn om daar te uploaden! En die toestemming heeft.</p>
-                <p>Checkpoints written to Ceph (S3 buckets)</p>
+                <p style="display: inline;">Handy, but some</p> <p style="display: inline;" class="fragment highlight-red">very big cons!</p>
+                <aside class="notes">
+                    There are machines with GPU's in our offline infrastructure on which we can run our deep learning models. However, offline computation also has it's big disadvantages!
+                </aside>
+            </section>
+            <section data-background-image="https://media.giphy.com/media/de5bARu0SsXiU/giphy.gif">
+                <p style="color: yellow; font-size: 55px; padding-bottom: 70%;">Manual data and software delivery!</p>
+                <aside class="notes">
+                    To reach training machines or production, the data and software has to reach the offline infrastructure stationed in Apeldoorn. As there is currently no arranged way to do it via a network channel, it is quite literally a manual delivery.
+                </aside>
+            </section>
+            <section>
+                <p>Manual transfer</p>
+                <aside class="notes">
+                    First way to do it: manually upload our data and software to the datacenter. Next, copy it from one subnet in the datacenter to another, and then you are halfway there. You get the idea. Typical deployments cost us half a day currently.
+                </aside>
+            </section>
+            <section>
+                <p>...or a nice ride 100 km to Apeldoorn to upload directly to the server... </p>
+                <p>...if you have the clearance to upload it, anyway!</p>
+                <img src="niceride.png" style="width: 70%; height: 70%">
+            </section>
+            <section>
+                <p>Clearly, when we as a new team were confronted with this, we knew it had to change</p>
+                <aside class="notes">Of course, once our team got established almost two years ago we knew that this has to change. I will tell a bit more about it at the end.</aside>
             </section>
         </section>
-        <section>
-            <p>Road to production</p>
+        <section data-background-image="https://media.giphy.com/media/FA77mwaxV74SA/giphy.gif">
+            <p style="font-size: 55px;">Once the code is in place</p>
+            <aside class="notes">
+                For now, let's pretend that our code and data is finally at the servers we can control and we could train our model succesfully!
+            </aside>
         </section>
         <section>
            <section>
@@ -257,20 +406,25 @@
             </ol>
            </section>
             <section>
-                <p>TensorFlow model server</p>
-                <p>Once our model is trained, we can export it and use the variables and saved graph for inference.</p>
+                <p style="font-size: 55px;">TensorFlow model server</p>
+                <aside class="notes">
+                    Once our model is trained, we can export it and use the variables and saved graph for inference.
+                </aside>
             </section>
             <section>
-                <p style="font-size: 35px; padding-bottom: 50px;">The exported model directory is then copied inside a very simple Dockerfile, together with a .conf file which specifies what the name of each model should be.</p>
-                <pre style="font-size: 20px;"><code data-trim data-noescape data-line-numbers style="max-height: 700px;">
+                <p style="font-size: 55px;">Dockerfile</p>
+                <pre style="font-size: 25px;"><code data-trim data-noescape data-line-numbers style="max-height: 700px;">
                     FROM tensorflow/serving:1.11.0-rc0
                     COPY /ES-NL /ES-NL
                     COPY translation_server.conf translation_server.conf
                     EXPOSE 8500:8500
                 </code></pre>
+                <aside class="notes">
+                    The exported model directory is then copied inside a very simple Dockerfile based on the tensorflow serving base image, together with a .conf file which specifies what the name of each model should be.
+                </aside>
             </section>
             <section>
-                <p>This way, we can export multiple models first, put them all inside a Docker image and distinguish the models inside a configuration file.</p>
+                <p style="font-size: 55px;">translation_server.conf</p>
                 <pre style="font-size: 20px;"><code data-trim data-noescape data-line-numbers style="max-height: 700px;">
                     model_config_list: {
                         config: {
@@ -286,39 +440,105 @@
                     }
                 </code></pre>
                 <p>Now multiple model graphs are restored within a single Docker container and are accessible on the same server!</p>
+                <aside class="notes">
+                    This way, we can export multiple models first, put them all inside a Docker image and distinguish the models inside a configuration file.
+                    Now multiple model graphs are restored within a single Docker container and are accessible on the same server!
+                </aside>
             </section>
             <section>
-                <p style="font-size: 55px; padding-bottom: 50px;">translation-api</p>
-                <p>We make use of REST microservices in our infrastructure, so each model we develop must have a REST API wrapper around it.</p>
-                <p style="display: inline">Our platform of choice is</p> <p style="background-color: green; display: inline"> flask-restplus. </p>
+                <p style="font-size: 55px; padding-bottom: 30px;">translation-api</p>
+                <img src="https://gimel.readthedocs.io/en/master/images/restapi.png" style="width: 40%; box-shadow: unset; border: unset; background: unset;">
+                <p>Our platform of choice is</p> <p style="background-color: green; display: inline"> flask-restplus. </p>
+                <aside class="notes">
+                    We make use of REST microservices in our infrastructure, so each model we develop must have a REST API wrapper around it.
+                    Flask-restplus is a flask variant specifically designed for creating REST-api's that comes with a lot of build in convenience functionality.
+                </aside>
             </section>
             <section>
-                <p>The REST API takes care of batching the data that is coming in, making the call to the TensorFlow model server and returning the output of the model as a well-formatted JSON.</p>
-                <p>Moreover, flask-restplus automatically generates Swagger documentation for our service. Very handy for other developers!</p>
+                <p style="font-size: 25px;">Moreover, flask-restplus automatically generates Swagger documentation for our service. Very handy for other developers!</p>
+                <img src="https://idratherbewritingmedia.com/images/api/swaggerpetstoreui.png" style="width: 70%; height: 70%">
+                <aside class="notes">
+                    The REST API takes care of batching the data that is coming in, making the call to the TensorFlow model server and returning the output of the model as a well-formatted JSON.
+                    Moreover, flask-restplus automatically generates Swagger documentation for our service. Very handy for other developers!
+                    If you click on one of those endpoints you can see what kind of parameters go in the model, an example endpoint call and you can actually try it out just like in Postman if you are familiar with it. </aside>
             </section>
             <section>
                 <p style="font-size: 55px; padding-bottom: 50px;">translation-frontend</p>
-                <p>Finally, we need to have an interface for non-developers to interact with our model. </p>
-                <p>We developed the initial version of our interface in Dash, a Python framework by the authors of plot.ly, but we now begin the transition to full React frontends.</p>
+                <img src="https://cdn.rawgit.com/plotly/dash-docs/b1178b4e/images/dash-logo-stripe.svg" style="box-shadow: unset; border: unset; background: unset;">
+                <img src="https://www.import.io/wp-content/uploads/2017/10/React-logo-1.png" style="box-shadow: unset; border: unset; background: unset; width: 30%">
+                <aside class="notes">
+                    Finally, we need to have an interface for non-developers to interact with our model.
+                    We developed the initial version of our interface in Dash, a Python framework by the authors of plot.ly, but we now begin the transition to full React frontends.
+                    And right now we as two Data Scientists and an engineer actually do it and learn react on the go, which is also a good thing for us as junior developers of course, but we plan to add senior frontend and backend devs to our team in the coming weeks actually.
+                </aside>
             </section>
         </section>
         <section>
             <p style="font-size: 55px;">Deployment</p>
+            <aside class="notes">
+                So as the last point i would like to talk about the actual deployment process inside our own dev team infrastructure.
+            </aside>
         </section>
         <section>
             <p>We need to make sure all of our microservices are scalable, reliable and can work together within one environment.</p>
         </section>
         <section>
-            <p>To make sure our "production" environment is up to date, we make use of Jenkins to build, test and analyze each one of the applications.</p>
-            <p>Once Jenkins has built the new version of a service, the built image is pushed to our own offline artifact store and is later retrieved in each deployment.</p>
+            <img src="datalab_build.png">
+            <aside class="notes">
+                To make sure our "production" environment is up to date, we make use of Jenkins to build, test and analyze each one of the applications.
+                Once Jenkins has built the new version of a service, the built image is pushed to our own offline artifact store and is later retrieved in each deployment.
+            </aside>
+        </section>
+        <section>
+            <img src="datalab_monitor.png">
+            <aside class="notes">
+                Jenkins makes sure we always have an overview of all of our microservices and their build status.
+            </aside>
         </section>
         <section>
             <p>As I have told, right now we have to do the last deployment step manually, but in the near future this step will become automatic too.</p>
+            <aside class="notes">Our devops engineers are working on a solution which would make the last Jenkins build stage actually deploy the application on the Apeldoorn infrastructure</aside>
         </section>
         <section>
-            <p>We make use of Kubernetes for our container orchestration.</p>
-            <p>Each service (frontend, backend and model server in the case of translation) have deployment files that make sure the corresponding service is up and running at all times.</p>
-            <p>final product of ds is not just a model or a jupyter notebook but is a fully operational microservice! (Docker image and the corresponding deployment files.)</p>
+            <div><p style="display: inline">We make use of</p>
+                <img src="https://kubernetes.io/images/kubernetes-horizontal-color.png" style="width: 30%; margin: 0; box-shadow: unset; border: unset; background: unset; position: relative; top: 17px;">
+                <p style="display: inline">for our container orchestration.</p>
+            </div>
+        </section>
+        <section>
+            <p style="font-size: 10px; position: relative; left: 35%;">© https://spinside.blogspot.com/2017/08/kubernetes-ingress-and-nginx-controller.html</p>
+            <img src="https://1.bp.blogspot.com/-dT7v0emOq7o/WcGEima_uAI/AAAAAAAAQsA/y0vcSzhq3C8uBaWuLxHfJoAR9ZeT6ZirgCLcBGAs/s1600/Kubernetes%2BIngress%2Bnginx%2BIngress%2BController%2B%25282%2529.png" style="width: 90%; height: 70%">
+            <aside class="notes">
+                Each service (frontend, backend and model server in the case of translation) have deployment files that make sure the corresponding service is up and running at all times.
+                The deployment file of, for example, translation-api makes sure that the translation-api service, or the actual pod which runs the API Docker container is always up. We also define an ingress, which allows the interaction with the pod through a web interface like Swagger.
+            </aside>
+        </section>
+        <section data-background-color="whitesmoke">
+            <img src="https://www.docker.com/sites/default/files/social/docker_facebook_share.png" style="box-shadow: unset; border: unset; background: unset; position: relative; width: 20%;">
+            <img src="https://cdn-images-1.medium.com/max/1600/1*LOFbTP2SxXcFpM_qTsUSuw.png" style="box-shadow: unset; border: unset; background: unset; position: relative; width: 20%; position: relative; top: 15px;">
+            <img src="https://d33np9n32j53g7.cloudfront.net/assets/stacks/sonarqube/img/sonarqube-stack-220x234-03e1b5cdc067ca099e0f0c3e4911bc0b.png" style="box-shadow: unset; border: unset; background: unset; position: relative; width: 16%;">
+            <img src="https://rx-m.com/wp-content/uploads/2017/02/k8s-logo-sq.svg" style="box-shadow: unset; border: unset; background: unset; position: relative; width: 20%; position: relative; top: 15px;">
+            <aside class="notes">
+                Final product of ds is not just a model or a Jupyter notebook but is a fully operational microservice! (Docker image and the corresponding deployment files.)
+                So a tested Docker image that was built through Jenkins and analyzed by Sonarqube and the coresponding Kubernetes deployment, service and ingress files.
+            </aside>
+        </section>
+        <section>
+            <section><p>Final thoughts</p></section>
+            <section>
+                <p style="font-size: 35px; padding-bottom: 50px;">It is a challenging task to create and maintain your own offline machine learning projects, especially at FIOD-like, bureaucratic environments.</p>
+                <p style="font-size: 35px;">However, it does make your independent of vendor lock in and makes real in depth customization and experimentation possible, plus allows you to work with confidential data!</p>
+            </section>
+            <section data-background-image="https://media.giphy.com/media/lD76yTC5zxZPG/giphy.gif">
+                <p style="font-size: 55px; padding-bottom: 50%">Thank you!</p>
+                <aside class="notes">
+                    We have vacancies open for data science and development team.
+                </aside>
+            </section>
+            <section>
+                <p style="font-size: 55px;">Questions?</p>
+                <p style="font-size: 25px; margin-top: 10%;">mark@maberger.nl</p>
+            </section>
         </section>
     </div>
 </div>
